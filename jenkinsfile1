@@ -31,6 +31,11 @@ stage("This is to package the code"){
   stage('Push to Docker hub'){
        steps{
            echo "Pushing the image to docker hub"
+           withCredentials([usernamePassword(credentialsId: 'dockerHub1', passwordVariable: 'dockerHubPass', usernameVariable: 'dockerHubUser')]) {
+               sh "docker tag my-image ${env.dockerHubUser}/my-image:latest"
+               sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+               sh "docker push ${env.dockerHubUser}/my-image:latest"
+            }
          }
        }
     }
