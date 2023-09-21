@@ -1,0 +1,33 @@
+ pipeline{
+    agent any
+    tools{
+        maven "maven"
+    }
+    stages{
+        stage("Fetch code from github repo"){
+            steps{
+                git url: 
+            }
+        }
+stage("This is to build the code"){
+            steps{
+                sh 'mvn compile'
+                echo 'Run Success'
+            }
+        }
+stage("This is to package the code"){
+            steps{
+                sh 'mvn package'
+                echo 'Run Success'
+            }
+        }
+  stage('Build and Push image') {
+           steps {
+withSonarQubeEnv('sonarqube-server') {
+      sh 'mvn clean package sonar:sonar'
+    } 
+
+              }
+            }
+    }
+}
