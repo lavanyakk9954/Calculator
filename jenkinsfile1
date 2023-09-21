@@ -30,7 +30,7 @@ stage("This is to package the code"){
             }
   stage('Push to Docker hub'){
        steps{
-           
+           echo "Pushing the image to docker hub"
          }
        }
     }
