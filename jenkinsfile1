@@ -22,13 +22,16 @@ stage("This is to package the code"){
                 echo 'Run Success'
             }
         }
-  stage('Build and Push image') {
+  stage('Build image') {
            steps {
-withSonarQubeEnv('sonarqube-server') {
-      sh 'mvn clean package sonar:sonar'
-    } 
-
+        echo "Building the image"
+        sh "docker build -t my-image ."
               }
             }
+  stage('Push to Docker hub'){
+       steps{
+           
+         }
+       }
     }
 }
