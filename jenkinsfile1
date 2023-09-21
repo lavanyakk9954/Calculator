@@ -6,7 +6,7 @@
     stages{
         stage("Fetch code from github repo"){
             steps{
-                git url: 
+                git url: "https://github.com/lavanyakk9954/Calculator.git"
             }
         }
 stage("This is to build the code"){
