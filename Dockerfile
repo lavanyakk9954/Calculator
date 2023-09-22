@@ -1,5 +1,5 @@
 # Use a base image that suits your application's requirements
-FROM ubuntu:latest
+FROM ubuntu
 
 # Set environment variables if needed
 # ENV MY_VARIABLE=my_value
@@ -22,7 +22,7 @@ WORKDIR /app
 # EXPOSE 80
 
 # Specify the command to run when the container starts
-# CMD ["mvn clean install"]
+CMD ["mvn clean install"]
 
 
 # FROM ubuntu:latest
