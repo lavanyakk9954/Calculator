@@ -25,16 +25,16 @@ stage("This is to package the code"){
   stage('Build image') {
            steps {
         echo "Building the image"
-        sh "sudo docker build -s -t my-image ."
+        sh "docker build -s -t my-image ."
               }
             }
   stage('Push to Docker hub'){
        steps{
            echo "Pushing the image to docker hub"
            withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPass', usernameVariable: 'dockerHubUser')]) {
-               sh "sudo docker tag my-image ${env.dockerHubUser}/my-image:latest"
-               sh "sudo docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
-               sh "sudo docker push ${env.dockerHubUser}/my-image:latest"
+               sh "docker tag my-image ${env.dockerHubUser}/my-image:latest"
+               sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+               sh "docker push ${env.dockerHubUser}/my-image:latest"
             }
          }
        }
